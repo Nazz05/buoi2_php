@@ -1,7 +1,9 @@
 <?php
 
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Phinx\Seed\AbstractSeed;
+use Faker\Factory;
 
 class StudentsSeeder extends AbstractSeed
 {
@@ -15,34 +17,20 @@ class StudentsSeeder extends AbstractSeed
      */
     public function run(): void
     {
-        $data = [
-            [
-                'fullname' => 'Nguyễn Văn An',
-                'email' => 'nguyenvanan@gmail.com',
+        $faker = Factory::create('vi_VN');
+        $data = [];
+        
+        // Tạo 20 sinh viên ngẫu nhiên
+        for ($i = 0; $i < 20; $i++) {
+            $data[] = [
+                'fullname' => $faker->name,
+                'email' => $faker->unique()->email,
                 'password' => password_hash('123456', PASSWORD_DEFAULT)
-            ],
-            [
-                'fullname' => 'Trần Thị Bình',
-                'email' => 'tranthibinh@gmail.com',
-                'password' => password_hash('123456', PASSWORD_DEFAULT)
-            ],
-            [
-                'fullname' => 'Lê Văn Cường',
-                'email' => 'levancuong@gmail.com',
-                'password' => password_hash('123456', PASSWORD_DEFAULT)
-            ],
-            [
-                'fullname' => 'Phạm Thị Dung',
-                'email' => 'phamthidung@gmail.com',
-                'password' => password_hash('123456', PASSWORD_DEFAULT)
-            ],
-            [
-                'fullname' => 'Hoàng Văn Em',
-                'email' => 'hoangvanem@gmail.com',
-                'password' => password_hash('123456', PASSWORD_DEFAULT)
-            ]
-        ];
-
+            ];
+        }
+        
         $this->table('students')->insert($data)->saveData();
     }
 }
+
+

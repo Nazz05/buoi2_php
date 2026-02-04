@@ -1,7 +1,9 @@
 <?php
 
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Phinx\Seed\AbstractSeed;
+use Faker\Factory;
 
 class ProductsSeeder extends AbstractSeed
 {
@@ -15,34 +17,20 @@ class ProductsSeeder extends AbstractSeed
      */
     public function run(): void
     {
-        $data = [
-            [
-                'name' => 'Laptop Dell XPS 13',
-                'price' => 25000000.00,
-                'quantity' => 10
-            ],
-            [
-                'name' => 'iPhone 15 Pro Max',
-                'price' => 35000000.00,
-                'quantity' => 15
-            ],
-            [
-                'name' => 'Samsung Galaxy S24',
-                'price' => 22000000.00,
-                'quantity' => 20
-            ],
-            [
-                'name' => 'AirPods Pro 2',
-                'price' => 6000000.00,
-                'quantity' => 30
-            ],
-            [
-                'name' => 'MacBook Pro M3',
-                'price' => 45000000.00,
-                'quantity' => 8
-            ]
-        ];
-
+        $faker = Factory::create('vi_VN');
+        $data = [];
+        
+        // Tạo 30 sản phẩm ngẫu nhiên
+        for ($i = 0; $i < 30; $i++) {
+            $data[] = [
+                'name' => $faker->words(3, true),
+                'price' => $faker->randomFloat(2, 100000, 50000000),
+                'quantity' => $faker->numberBetween(0, 100)
+            ];
+        }
+        
         $this->table('products')->insert($data)->saveData();
     }
 }
+
+
