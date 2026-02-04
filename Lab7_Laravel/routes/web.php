@@ -25,7 +25,7 @@ Route::get('/home', function () {
 
 // Route /about - trả về thông tin cá nhân
 Route::get('/about', function () {
-    return "Họ tên: Nguyễn Văn A<br>Lớp: CNTT-K65<br>MSSV: 2021600001";
+    return "Họ tên: Nguyễn Hoài Nam<br>Lớp: D18CNPM2<br>MSSV: 23810310082";
 });
 
 // Route /contact - trả về view contact
