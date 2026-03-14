@@ -21,19 +21,19 @@
             <tbody>
                 @foreach($products as $product)
                 <tr>
-                    <td>{{ $product['id'] }}</td>
-                    <td>{{ $product['name'] }}</td>
+                    <td>{{ $product->id }}</td>
+                    <td>{{ $product->name }}</td>
                     <td>
-                        @if($product['price'] > 10000000)
+                        @if($product->price > 10000000)
                             <span style="color: red; font-weight: bold;">
-                                {{ number_format($product['price'], 0, ',', '.') }} đ (Vip)
+                                {{ number_format($product->price, 0, ',', '.') }} đ (Vip)
                             </span>
                         @else
-                            {{ number_format($product['price'], 0, ',', '.') }} đ
+                            {{ number_format($product->price, 0, ',', '.') }} đ
                         @endif
                     </td>
                     <td>
-                        {{ $product['price'] > 10000000 ? 'Sản phẩm cao cấp' : 'Sản phẩm thường' }}
+                        {{ $product->price > 10000000 ? 'Sản phẩm cao cấp' : 'Sản phẩm thường' }}
                     </td>
                 </tr>
                 @endforeach
